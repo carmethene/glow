@@ -1,0 +1,14 @@
+//modalpha.psh - modulates texture colour by texture alpha and outputs the result
+
+ps.2.0
+
+dcl t0
+dcl_2d s0
+
+//modulate
+texld r0, t0, s0
+mov r1, r0.aaa
+mul r0, r0, r1
+
+//output
+mov oC0, r0

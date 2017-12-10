@@ -1,0 +1,36 @@
+//gaussian.psh - gaussian blurs a texture based on supplied tex coords
+
+ps.2.0
+
+dcl_2d s0
+dcl t0
+dcl t1
+dcl t2
+dcl t3
+dcl t4
+dcl t5
+dcl t6
+
+//def c0, 0.4,0.28,0.12,0.024	//blend weights
+def c0, 0.5,0.35,0.15,0.03	//blend weights
+
+//load texture samples
+texld r0, t0, s0
+texld r1, t1, s0
+texld r2, t2, s0
+texld r3, t3, s0
+texld r4, t4, s0
+texld r5, t5, s0
+texld r6, t6, s0
+
+//blend samples
+mul r7, r0, c0.x
+mad r7, r1, c0.y, r7
+mad r7, r2, c0.z, r7
+mad r7, r3, c0.a, r7
+mad r7, r4, c0.y, r7
+mad r7, r5, c0.z, r7
+mad r7, r6, c0.a, r7
+
+//output
+mov oC0, r7
